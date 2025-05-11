@@ -1,7 +1,40 @@
 ﻿@page "/"
+@using Nonna.Web.Models
+@inject HttpClient Http
 
 <PageTitle>Home</PageTitle>
 
-<h1>Hello, world!</h1>
+@if (recipeIndex == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <MudGrid>
+        @foreach (var index in recipeIndex.Index)
+        {
+            <MudItem xs="3">
+                <MudCard>
+                    <MudCardMedia Image="@($"recipes/{index.Path}/{index.Image}")" Height="200" />
+                    <MudCardContent>
+                        <MudText Typo="Typo.h5">@index.Title</MudText>
+                        <MudText Typo="Typo.body2">@index.Description</MudText>
+                    </MudCardContent>
+                    <MudCardActions>
+                        <MudButton Variant="Variant.Text" Color="Color.Primary">Share</MudButton>
+                        <MudButton Variant="Variant.Text" Color="Color.Primary">Learn More</MudButton>
+                    </MudCardActions>
+                </MudCard>
+            </MudItem>
+        }
+    </MudGrid>
+}
 
-Welcome to your new app.
+@code {
+    private RecipeIndex recipeIndex;
+
+    protected override async Task OnInitializedAsync()
+    {
+        recipeIndex = await Http.GetFromJsonAsync<RecipeIndex>("recipes/index.json");
+    }
+}
