@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.13.35931.197 d17.13
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nonna.Web", "Nonna.Web.csproj", "{AF5CBAE6-72CD-4C21-8C56-46A6564D0152}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nonna.Web", "Nonna\Nonna.Web.csproj", "{AF5CBAE6-72CD-4C21-8C56-46A6564D0152}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
