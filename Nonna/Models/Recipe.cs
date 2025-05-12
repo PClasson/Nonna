@@ -7,7 +7,6 @@
         public List<IngredientSection> IngredientSections { get; set; } = [];
         public List<StepSection> StepSections { get; set; } = [];
         public List<string> Notes { get; set; } = [];
-        public List<string> Tags { get; set; } = [];
         public string Image { get; set; }
     }
 

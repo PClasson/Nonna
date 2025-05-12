@@ -2,37 +2,71 @@
 @using YamlDotNet.Serialization
 @inject HttpClient Http
 
-
-<PageTitle>@recipePath</PageTitle>
-
 @if (_recipe == null)
 {
     <p><em>Loading...</em></p>
 }
 else
 {
-    <MudImage Src="@($"recipes/{recipePath}/{_recipe.Image}")" Alt="recept-bild" Fluid="true" ObjectFit="ObjectFit.Cover" Elevation="25" Class="rounded-lg" Height="25" />
+    <PageTitle>@_recipe.Title</PageTitle>
 
-    <MudPaper>
-        <MudList T="string" ReadOnly="true">
-            <MudListSubheader>
-                Ingredienser
-            </MudListSubheader>
-            @foreach (var section in _recipe.IngredientSections)
-            {
-                <MudListItem Icon="@Icons.Material.Filled.ReceiptLong" Text="@(section.Title)" Expanded>
-                    <NestedList>
-                        @foreach (var ingredient in section.Ingredients)
+    <MudContainer MaxWidth="MaxWidth.Medium">
+        <MudImage Src="@($"recipes/{recipePath}/{_recipe.Image}")" Alt="recept-bild" Fluid="true" ObjectFit="ObjectFit.Cover" Elevation="25" Class="rounded-lg" Height="25" />
+    </MudContainer>
+    <MudContainer MaxWidth="MaxWidth.Medium">
+        <MudPaper Class="pa-16 ma-2" Elevation="3">
+            <MudText Typo="Typo.h4" Align="Align.Center">@(_recipe.Title)</MudText>
+            <MudList T="string" ReadOnly="true">
+                @foreach (var section in _recipe.IngredientSections)
+                {
+                    <MudListItem Icon="@Icons.Material.Filled.ReceiptLong" Text="@(section.Title)" Expanded>
+                        <NestedList>
+                            @foreach (var ingredient in section.Ingredients)
+                            {
+                                <MudListItem Icon="@Icons.Material.Filled.KeyboardArrowRight">
+                                    @ingredient
+                                </MudListItem>
+                            }
+                        </NestedList>
+                    </MudListItem>
+                }
+            </MudList>
+
+            <MudTimeline>
+                @foreach (var section in _recipe.StepSections)
+                {
+                    @foreach (var step in section.Steps)
+                    {
+                        @if (section.Steps.First() == step)
                         {
-                            <MudListItem Icon="@Icons.Material.Filled.KeyboardArrowRight">
-                                @ingredient
-                            </MudListItem>
+                            <MudTimelineItem Color="Color.Tertiary" TimelineAlign="TimelineAlign.End">
+                                <ItemOpposite>
+                                    <MudText Color="Color.Dark" Typo="Typo.h6">@(section.Title)</MudText>
+                                </ItemOpposite>
+                                <ItemContent>
+                                    <MudPaper Elevation="0" Class="mt-n1">
+                                        <MudText Typo="Typo.body2">@(step)</MudText>
+                                    </MudPaper>
+                                </ItemContent>
+                            </MudTimelineItem>
                         }
-                    </NestedList>
-                </MudListItem>
-            }
-        </MudList>
-    </MudPaper>
+                        else
+                        {
+                            <MudTimelineItem TimelineAlign="TimelineAlign.End">
+                                <ItemOpposite>
+                                </ItemOpposite>
+                                <ItemContent>
+                                    <MudPaper Elevation="0" Class="mt-n1">
+                                        <MudText Typo="Typo.body2">@(step)</MudText>
+                                    </MudPaper>
+                                </ItemContent>
+                            </MudTimelineItem>
+                        }
+                    }
+                }
+            </MudTimeline>
+        </MudPaper>
+    </MudContainer>
 }
 
 @code {
@@ -45,8 +79,7 @@ else
     {
         var recipeYaml = await Http.GetStringAsync($"recipes/{recipePath}/{recipePath}.yaml");
 
-        var deserializer = new DeserializerBuilder()
-            .Build();
+        var deserializer = new DeserializerBuilder().Build();
 
         _recipe = deserializer.Deserialize<Nonna.Web.Models.Recipe>(recipeYaml);
     }
