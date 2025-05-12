@@ -1,6 +1,8 @@
 ﻿@page "/"
 @using Nonna.Web.Models
 @inject HttpClient Http
+@inject NavigationManager NavigationManager
+
 
 <PageTitle>Home</PageTitle>
 
@@ -10,24 +12,24 @@
 }
 else
 {
-    <MudGrid>
-        @foreach (var index in recipeIndex.Index)
-        {
-            <MudItem xs="12" sm="6" md="3">
-                <MudCard>
-                    <MudCardMedia Image="@($"recipes/{index.Path}/{index.Image}")"/>
-                    <MudCardContent>
-                        <MudText Typo="Typo.h5">@index.Title</MudText>
-                        <MudText Typo="Typo.body2">@index.Description</MudText>
-                    </MudCardContent>
-                    <MudCardActions>
-                        <MudButton Variant="Variant.Text" Color="Color.Primary">Share</MudButton>
-                        <MudButton Variant="Variant.Text" Color="Color.Primary">Learn More</MudButton>
-                    </MudCardActions>
-                </MudCard>
-            </MudItem>
-        }
-    </MudGrid>
+    <MudContainer Class="mt-16">
+        <MudText Typo="Typo.h3" Align="Align.Center" GutterBottom="true">Nonna</MudText>
+        <MudText Align="Align.Center">Recept från farmor</MudText>
+        <MudGrid Class="mt-8">
+            @foreach (var index in recipeIndex.Index)
+            {
+                <MudItem xs="12" sm="6" md="4">
+                    <MudCard @onclick="@(() => NavigateToRecipe(index.Path))" Elevation="25" Class="rounded-lg pb-4">
+                        <MudCardMedia Image="@($"recipes/{index.Path}/{index.Image}")" />
+                        <MudCardContent>
+                            <MudText Typo="Typo.h5">@index.Title</MudText>
+                            <MudText Typo="Typo.body2">@index.Description</MudText>
+                        </MudCardContent>
+                    </MudCard>
+                </MudItem>
+            }
+        </MudGrid>
+    </MudContainer>
 }
 
 @code {
@@ -36,5 +38,10 @@ else
     protected override async Task OnInitializedAsync()
     {
         recipeIndex = await Http.GetFromJsonAsync<RecipeIndex>("recipes/index.json");
+    }
+
+    private void NavigateToRecipe(string recipe)
+    {
+        NavigationManager.NavigateTo("/" + recipe);
     }
 }

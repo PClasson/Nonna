@@ -1,5 +1,53 @@
-﻿<h3>Recipe</h3>
+﻿@page "/{recipePath}"
+@using YamlDotNet.Serialization
+@inject HttpClient Http
+
+
+<PageTitle>@recipePath</PageTitle>
+
+@if (_recipe == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <MudImage Src="@($"recipes/{recipePath}/{_recipe.Image}")" Alt="recept-bild" Fluid="true" ObjectFit="ObjectFit.Cover" Elevation="25" Class="rounded-lg" Height="25" />
+
+    <MudPaper>
+        <MudList T="string" ReadOnly="true">
+            <MudListSubheader>
+                Ingredienser
+            </MudListSubheader>
+            @foreach (var section in _recipe.IngredientSections)
+            {
+                <MudListItem Icon="@Icons.Material.Filled.ReceiptLong" Text="@(section.Title)" Expanded>
+                    <NestedList>
+                        @foreach (var ingredient in section.Ingredients)
+                        {
+                            <MudListItem Icon="@Icons.Material.Filled.KeyboardArrowRight">
+                                @ingredient
+                            </MudListItem>
+                        }
+                    </NestedList>
+                </MudListItem>
+            }
+        </MudList>
+    </MudPaper>
+}
 
 @code {
+    [Parameter]
+    public string? recipePath { get; set; }
 
+    private Nonna.Web.Models.Recipe? _recipe { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        var recipeYaml = await Http.GetStringAsync($"recipes/{recipePath}/{recipePath}.yaml");
+
+        var deserializer = new DeserializerBuilder()
+            .Build();
+
+        _recipe = deserializer.Deserialize<Nonna.Web.Models.Recipe>(recipeYaml);
+    }
 }
