@@ -1,7 +1,7 @@
 {
   "mainAssemblyName": "Nonna.Web",
   "resources": {
-    "hash": "sha256-QH+maFd2KGwHMM4v1eez7bcNwI7mNpXYuhbuDt2ZYMk=",
+    "hash": "sha256-xQVTm5cATfMCDB7ijhKJDCq9l/EIPFAwAmccofSf4S0=",
     "jsModuleNative": {
       "dotnet.native.8.0.2.jgt5nhn140.js": "sha256-gPMK16QWoJSTxorlZJqcVtbBRTniIQWlLsJN2O4cJHg="
     },
@@ -34,7 +34,7 @@
       "Microsoft.JSInterop.wasm": "sha256-HINwzH/0Qid9lqjcuq5lzxFSaJB6eHLlOeCJJrJTXwE=",
       "Microsoft.JSInterop.WebAssembly.wasm": "sha256-g67T8DzNXo4jgqaEAc5IV2geLKB19sYEWN3rozAJzm0=",
       "MudBlazor.wasm": "sha256-wGaVn7euWmLgpVO8EjASsgF6jE3haDUp3RPzd4IQcp4=",
-      "Nonna.Web.wasm": "sha256-OY/kYEmM82bAG+u0Pt5lGSWDJ4hdXXBHAi77aeFruCg=",
+      "Nonna.Web.wasm": "sha256-f00WEl1pcuT+xSot4rd4Wk8dgPaOeaU0R7aasinWstI=",
       "System.Collections.Concurrent.wasm": "sha256-56IbVmWlaWbssFQYsX+7FVw5yf1hBhV2acovr0w0jT4=",
       "System.Collections.Immutable.wasm": "sha256-Kzq84qkbqCRcRSJZnM8uWzjfGl1aweUqElbS3v23wDw=",
       "System.Collections.wasm": "sha256-HgThrpe899zZh1vPAYpyE76xseSDKU4ymf9J1KLlMeE=",
