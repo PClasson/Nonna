@@ -16,15 +16,15 @@ else
         </MudItem>
         <MudFlexBreak />
         <MudItem xs="12">
-            <MudText Typo="Typo.h5" Align="Align.Center">@(_recipe.Title)</MudText>
-            <MudList T="string" ReadOnly="true" Class="pa-4">
+            <MudText Typo="Typo.h5" Align="Align.Center" Class="mb-5">@(_recipe.Title)</MudText>
+            <MudList T="string" ReadOnly="true" Dense="true" Gutters="true">
                 @foreach (var section in _recipe.IngredientSections)
                 {
                     <MudListItem Icon="@Icons.Material.Filled.ReceiptLong" Text="@(section.Title)" Expanded>
                         <NestedList>
                             @foreach (var ingredient in section.Ingredients)
                             {
-                                <MudListItem Icon="@Icons.Material.Filled.KeyboardArrowRight">
+                                <MudListItem Icon="@Icons.Material.Filled.KeyboardArrowRight" Class="pr-5">
                                     @ingredient
                                 </MudListItem>
                             }
@@ -38,7 +38,7 @@ else
                         <NestedList>
                             @foreach (var step in section.Steps)
                             {
-                                <MudListItem Icon="@Icons.Material.Filled.KeyboardArrowRight">
+                                <MudListItem Icon="@Icons.Material.Filled.KeyboardArrowRight" Class="pr-5">
                                     @step
                                 </MudListItem>
                             }
