@@ -1,6 +1,8 @@
-﻿@inherits LayoutComponentBase
+﻿@using Nonna.Web.Themes
+@inherits LayoutComponentBase
 
 @* Required *@
+@* <MudThemeProvider Theme="@NonnaThemes.PrimaryTheme" IsDarkMode="true" /> *@
 <MudThemeProvider />
 <MudPopoverProvider />
 
@@ -12,7 +14,7 @@
 
 <div class="page">
     <main>
-        <article class="content px-4">
+        <article>
             @Body
         </article>
     </main>

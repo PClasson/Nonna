@@ -5,42 +5,97 @@
 
 <PageTitle>Nonna</PageTitle>
 
+<MudContainer>
+    <MudText Typo="Typo.h3" Align="Align.Center" GutterBottom="true">Nonna</MudText>
+    <MudText Align="Align.Center">Recept från farmor</MudText>
+
+    <MudContainer MaxWidth="MaxWidth.Small" Style="width: 300px">
+        <MudTextField ValueChanged="@FilterRecipeList" Immediate="true" Variant="Variant.Text" T="string" Label="Filtrera"></MudTextField>
+    </MudContainer>
+</MudContainer>
+
 @if (recipeIndex == null)
 {
-    <p><em>Loading...</em></p>
+    <MudContainer>
+        <MudText Typo="Typo.h3" Align="Align.Center" GutterBottom="true">Laddar recept...</MudText>
+    </MudContainer>
+}
+else if (filteredList.Any())
+{
+    <MudContainer>
+            <MudGrid Class="mt-4 mb-1 pt-0" Justify="Justify.Center" Spacing="5">
+                @foreach (var index in filteredList)
+                {
+                    <MudItem>
+                        <MudCard @onclick="@(() => NavigateToRecipe(index.Path))" Elevation="25" Class="rounded-lg">
+                            <MudCardMedia Image="@($"recipes/{index.Path}/{index.Image}")" />
+                            <MudCardContent Style="width: 200px; height:125px;" Class="d-flex flex-column justify-space-around pa-3">
+                                <MudText>@index.Title</MudText>
+                                <MudText>@index.Description</MudText>
+                            </MudCardContent>
+                            <MudCardActions>
+                                @foreach (var tag in index.Tags.Take(5))
+                                {
+                                    <MudChip T="string" Size="Size.Small">@tag</MudChip>
+                                }
+                            </MudCardActions>
+                        </MudCard>
+                    </MudItem>
+                }
+            </MudGrid>
+    </MudContainer>
 }
 else
 {
-    <MudContainer Class="mt-16">
-        <MudText Typo="Typo.h3" Align="Align.Center" GutterBottom="true">Nonna</MudText>
-        <MudText Align="Align.Center">Recept från farmor</MudText>
-        <MudGrid Class="mt-8">
-            @foreach (var index in recipeIndex.Index)
-            {
-                <MudItem xs="12" sm="6" md="4">
-                    <MudCard @onclick="@(() => NavigateToRecipe(index.Path))" Elevation="25" Class="rounded-lg pb-4">
-                        <MudCardMedia Image="@($"recipes/{index.Path}/{index.Image}")" />
-                        <MudCardContent>
-                            <MudText Typo="Typo.h5">@index.Title</MudText>
-                            <MudText Typo="Typo.body2">@index.Description</MudText>
-                        </MudCardContent>
-                    </MudCard>
-                </MudItem>
-            }
-        </MudGrid>
+    <MudContainer>
+        <MudText Typo="Typo.h3" Align="Align.Center" GutterBottom="true">Inga recept...</MudText>
     </MudContainer>
 }
 
 @code {
-    private RecipeIndex recipeIndex;
+    private RecipeIndex? recipeIndex;
+    private List<RecipeSummary> filteredList;
+
+    private string[]? recipeTitles;
+    private string[]? recipeTags;
 
     protected override async Task OnInitializedAsync()
     {
         recipeIndex = await Http.GetFromJsonAsync<RecipeIndex>("recipes/index.json");
+
+        if (recipeIndex is not null)
+        {
+            recipeTitles = recipeIndex.Index.Select(i => i.Title).ToArray();
+            recipeTags = recipeIndex.Index.SelectMany(i => i.Tags).Distinct().ToArray();
+            filteredList = recipeIndex.Index;
+        }
+    }
+
+    private async Task<IEnumerable<string>> FilterRecipes(string value, CancellationToken token)
+    {
+        if (string.IsNullOrEmpty(value))
+            return new string[0];
+        return recipeTitles.Where(x => x.Contains(value, StringComparison.InvariantCultureIgnoreCase));
+    }
+
+    private void FilterRecipeList(string value)
+    {
+        if (string.IsNullOrWhiteSpace(value) || value.Length < 3)
+        {
+            filteredList = recipeIndex.Index;
+        }
+        else
+        {
+            filteredList = recipeIndex.Index
+                .Where(x => x.Title.Contains(value, StringComparison.InvariantCultureIgnoreCase)
+                        || x.Tags.Any(tag => tag.Contains(value, StringComparison.InvariantCultureIgnoreCase)))
+                .ToList();
+        }
     }
 
     private void NavigateToRecipe(string recipe)
     {
+        // NavigationManager.NavigateTo("/" + recipe);
         NavigationManager.NavigateTo("/Nonna/" + recipe);
     }
 }

@@ -10,13 +10,14 @@ else
 {
     <PageTitle>@_recipe.Title</PageTitle>
 
-    <MudContainer MaxWidth="MaxWidth.Medium">
-        <MudImage Src="@($"recipes/{recipePath}/{_recipe.Image}")" Alt="recept-bild" Fluid="true" ObjectFit="ObjectFit.Cover" Elevation="25" Class="rounded-lg" Height="25" />
-    </MudContainer>
-    <MudContainer MaxWidth="MaxWidth.Medium">
-        <MudPaper Class="pa-16 ma-2" Elevation="3">
-            <MudText Typo="Typo.h4" Align="Align.Center">@(_recipe.Title)</MudText>
-            <MudList T="string" ReadOnly="true">
+    <MudGrid Justify="Justify.Center">
+        <MudItem xs="12">
+            <MudImage Src="@($"recipes/{recipePath}/{_recipe.Image}")" Alt="recept-bild" Fluid="true" ObjectFit="ObjectFit.Cover" />
+        </MudItem>
+        <MudFlexBreak />
+        <MudItem xs="12">
+            <MudText Typo="Typo.h5" Align="Align.Center">@(_recipe.Title)</MudText>
+            <MudList T="string" ReadOnly="true" Class="pa-4">
                 @foreach (var section in _recipe.IngredientSections)
                 {
                     <MudListItem Icon="@Icons.Material.Filled.ReceiptLong" Text="@(section.Title)" Expanded>
@@ -30,43 +31,23 @@ else
                         </NestedList>
                     </MudListItem>
                 }
-            </MudList>
 
-            <MudTimeline>
                 @foreach (var section in _recipe.StepSections)
                 {
-                    @foreach (var step in section.Steps)
-                    {
-                        @if (section.Steps.First() == step)
-                        {
-                            <MudTimelineItem Color="Color.Tertiary" TimelineAlign="TimelineAlign.End">
-                                <ItemOpposite>
-                                    <MudText Color="Color.Dark" Typo="Typo.h6">@(section.Title)</MudText>
-                                </ItemOpposite>
-                                <ItemContent>
-                                    <MudPaper Elevation="0" Class="mt-n1">
-                                        <MudText Typo="Typo.body2">@(step)</MudText>
-                                    </MudPaper>
-                                </ItemContent>
-                            </MudTimelineItem>
-                        }
-                        else
-                        {
-                            <MudTimelineItem TimelineAlign="TimelineAlign.End">
-                                <ItemOpposite>
-                                </ItemOpposite>
-                                <ItemContent>
-                                    <MudPaper Elevation="0" Class="mt-n1">
-                                        <MudText Typo="Typo.body2">@(step)</MudText>
-                                    </MudPaper>
-                                </ItemContent>
-                            </MudTimelineItem>
-                        }
-                    }
+                    <MudListItem Icon="@Icons.Material.Filled.FoodBank" Text="@(section.Title)" Expanded>
+                        <NestedList>
+                            @foreach (var step in section.Steps)
+                            {
+                                <MudListItem Icon="@Icons.Material.Filled.KeyboardArrowRight">
+                                    @step
+                                </MudListItem>
+                            }
+                        </NestedList>
+                    </MudListItem>
                 }
-            </MudTimeline>
-        </MudPaper>
-    </MudContainer>
+            </MudList>
+        </MudItem>
+    </MudGrid>
 }
 
 @code {
