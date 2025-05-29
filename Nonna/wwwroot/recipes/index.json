@@ -34,6 +34,16 @@
         "Bistro",
         "Råbiff"
       ]
+    },
+    {
+      "title": "Min leverpastej",
+      "description": "Egentligen farmors leverpastej",
+      "image": "ea113c97-c506-4d5e-a90c-a9f22a955369.jpg",
+      "path": "leverpastej",
+      "tags": [
+        "Farmor",
+        "Jul"
+      ]
     }
   ]
 }

@@ -1,0 +1,29 @@
+Title: "Min leverpastej"
+Description: "Farmors leverpastej"
+IngredientSections:
+  - Title: "Leverpastej"
+    Ingredients:
+      - "1/2 kg lever"
+      - "300 g fläskkött"
+      - "4 ansjovisar"
+      - "1 liten gul lök"
+      - "3 dl tjock grädde"
+      - "3 ägg"
+      - "1 dl vetemjöl"
+      - "1 tsk mejram"
+      - "1/2 tsk vitpeppar"
+      - "1/2 tsk kryddpeppar"
+      - "1 msk socker"
+      - "2 tsk salt"
+StepSections:
+  - Title: "Leverpastej"
+    Steps:
+      - "Mal lever, fläskkött, ansjovis och lök tillsammans"
+      - "Vispa upp grädden luftigt"
+      - "Vispa ägg, vetemjöl och kryddor"
+      - "Blanda det malda köttet, grädden och äggblandningen"
+      - "Portionera i formar"
+      - "Ställ in i vattenbad i ugnen och sätt ugnen på 225 grader"
+      - "Baka i ca 1 1/2 timme"
+Notes:
+Image: "ea113c97-c506-4d5e-a90c-a9f22a955369.jpg"
