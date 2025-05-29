@@ -44,6 +44,16 @@
         "Farmor",
         "Jul"
       ]
+    },
+    {
+      "title": "Kimchi",
+      "description": "",
+      "image": "da658f23-b8c7-4e9e-bc1b-be838f71d0e5.jpg",
+      "path": "kimchi",
+      "tags": [
+        "Koreanskt",
+        "Fermenterat"
+      ]
     }
   ]
 }

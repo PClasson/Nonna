@@ -1,0 +1,38 @@
+Title: "Kimchi"
+Description: "Kimchi"
+IngredientSections:
+  - Title: "Kimchi"
+    Ingredients:
+      - "2 kg salladskål"
+      - "40 g salt"
+      - "En bit rättika"
+      - "3 morötter"
+      - "1 bunt salladslök"
+      - "1 bunt gräslök"
+  - Title: "Gröt"
+    Ingredients:
+      - "4,5 dl vatten"
+      - "2 msk rismjöl"
+      - "2 matskedar socker"
+      - "1 dl fisksås"
+      - "24 vitlöksklyftor"
+      - "1/2 stor gul lök"
+      - "En bit ingefära"
+      - "4,5 dl Gochugaru"
+StepSections:
+  - Title: "Kimchi"
+    Steps:
+      - "Dela kålen i bitar och skölj"
+      - "Salta kålen och låt ligga och dra"
+      - "Strimla rättika och morötter, dela salladslök och gräslök i lagom stora bitar"
+      - "Blanda ner rättika, morötter, salladslök och gräslök i gröten"
+      - "Blanda kålen med gröt och grönsaker"
+  - Title: "Gröt"
+    Steps:
+      - "Blanda vatten, rismjöl och socker och koka ihop tills det tjocknar"
+      - "Kör lök, vitlök och ingefära i matberedare tills det är som en smet"
+      - "Blanda ner lök, vitlök och ingefära i gröten, häll på fisksås och blanda ner gochugaru"
+Notes:
+  - "Kan ätas färsk, eller låta fermeneras"
+  - "Nongshim gör en riktigt bra Gochugaru"
+Image: "da658f23-b8c7-4e9e-bc1b-be838f71d0e5.jpg"
