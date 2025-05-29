@@ -1,0 +1,30 @@
+Title: "Tartare Balzac"
+Description: "Råbiff från Brasserie Balzac"
+IngredientSections:
+  - Title: "Råbiff"
+    Ingredients:
+      - "Grovmalen magert kött av nötrulle eller innanlår, alt. finskuren oxfilé"
+      - "Finhackad rödlök"
+      - "Finhackad kapris"
+      - "Finhackad cornichons"
+      - "Finhackad gräslök"
+  - Title: "Senapsdressing"
+    Ingredients:
+      - "1 dl vanlig senap (Typ Slotts Original)"
+      - "1 dl dijon"
+      - "2 msk champagnevinäger"
+      - "1 msk cognac eller whisky"
+      - "1 tsk Worcestershiresås"
+      - "Lite Tabasco"
+      - "1 dl neutral olja"
+StepSections:
+  - Title: "Senapsdressing"
+    Steps:
+      - "Blanda och droppa i oljan, som en majonnäs"
+  - Title: "Råbiff"
+    Steps:
+      - "Blanda kött, tillbehör och dressing"
+Notes:
+  - "Toppa med pommes allumettes eller finhackade chips"
+  - "Många fuckar upp denna med att ha för mycket kapris eller cornichons. Hellre mer senapsdressing och gräslök!"
+Image: "47670f8a-e0c4-46b0-83ca-9384693a0e5e.jpg"
