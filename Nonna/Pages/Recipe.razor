@@ -10,44 +10,59 @@ else
 {
     <PageTitle>@_recipe.Title</PageTitle>
 
-    <MudGrid Justify="Justify.Center">
-        <MudItem xs="12">
-            <MudImage Src="@($"recipes/{recipePath}/{_recipe.Image}")" Alt="recept-bild" Fluid="true" ObjectFit="ObjectFit.Cover" />
-        </MudItem>
-        <MudFlexBreak />
-        <MudItem xs="12">
-            <MudText Typo="Typo.h5" Align="Align.Center" Class="mb-5">@(_recipe.Title)</MudText>
-            <MudList T="string" ReadOnly="true" Dense="true" Gutters="true">
-                @foreach (var section in _recipe.IngredientSections)
-                {
-                    <MudListItem Icon="@Icons.Material.Filled.ReceiptLong" Text="@(section.Title)" Expanded>
-                        <NestedList>
-                            @foreach (var ingredient in section.Ingredients)
-                            {
-                                <MudListItem Icon="@Icons.Material.Filled.KeyboardArrowRight" Class="pr-5">
-                                    @ingredient
-                                </MudListItem>
-                            }
-                        </NestedList>
-                    </MudListItem>
-                }
-
-                @foreach (var section in _recipe.StepSections)
-                {
-                    <MudListItem Icon="@Icons.Material.Filled.FoodBank" Text="@(section.Title)" Expanded>
-                        <NestedList>
-                            @foreach (var step in section.Steps)
-                            {
-                                <MudListItem Icon="@Icons.Material.Filled.KeyboardArrowRight" Class="pr-5">
-                                    @step
-                                </MudListItem>
-                            }
-                        </NestedList>
-                    </MudListItem>
-                }
-            </MudList>
-        </MudItem>
-    </MudGrid>
+    <MudContainer Class="my-5" MaxWidth="MaxWidth.Medium">
+        <MudGrid Justify="Justify.Center">
+            <MudItem xs="12">
+                <MudImage Elevation="5" Src="@($"recipes/{recipePath}/{_recipe.Image}")" Alt="recept-bild" Fluid="true" ObjectFit="ObjectFit.Cover" Class="rounded" />
+                <MudPaper Class="pa-5">
+                    <MudText Typo="Typo.h5" Align="Align.Center" Class="mb-5">@(_recipe.Title)</MudText>
+                    <MudText Typo="Typo.subtitle1" Align="Align.Left" Class="my-5">@(_recipe.Description)</MudText>
+                    @foreach (var note in _recipe.Notes)
+                    {
+                        <MudText Typo="Typo.subtitle2" Align="Align.Left" Class="my-5">@(note)</MudText>
+                    }
+                </MudPaper>
+            </MudItem>
+            <MudItem xs="12" md="6">
+                <MudText Typo="Typo.h6" Align="Align.Left" Class="my-5">Ingredienser</MudText>
+                <MudList T="string" ReadOnly="true" Gutters="true">
+                    @foreach (var section in _recipe.IngredientSections)
+                    {
+                        <MudListItem Icon="@Icons.Material.Filled.ReceiptLong" Text="@(section.Title)" Expanded>
+                            <NestedList>
+                                @foreach (var ingredient in section.Ingredients)
+                                {
+                                    <MudDivider />
+                                    <MudListItem Class="pr-5">
+                                        @ingredient
+                                    </MudListItem>
+                                }
+                            </NestedList>
+                        </MudListItem>
+                    }
+                </MudList>
+            </MudItem>
+            <MudItem xs="12" md="6">
+                <MudText Typo="Typo.h6" Align="Align.Left" Class="my-5">Instruktioner</MudText>
+                <MudList T="string" ReadOnly="true" Gutters="true">
+                    @foreach (var section in _recipe.StepSections)
+                    {
+                        <MudListItem Icon="@Icons.Material.Filled.Checklist" Text="@(section.Title)" Expanded>
+                            <NestedList>
+                                @foreach (var step in section.Steps)
+                                {
+                                    <MudDivider />
+                                    <MudListItem Class="pr-5">
+                                        @step
+                                    </MudListItem>
+                                }
+                            </NestedList>
+                        </MudListItem>
+                    }
+                </MudList>
+            </MudItem>
+        </MudGrid>
+    </MudContainer>
 }
 
 @code {
