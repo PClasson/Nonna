@@ -1,6 +1,7 @@
 ﻿@page "/{recipePath}"
 @using YamlDotNet.Serialization
 @inject HttpClient Http
+@inject NavigationManager NavigationManager
 
 @if (_recipe == null)
 {
@@ -11,6 +12,7 @@ else
     <PageTitle>@_recipe.Title</PageTitle>
 
     <MudContainer Class="my-5" MaxWidth="MaxWidth.Medium">
+        <MudButton Variant="Variant.Text" StartIcon="@Icons.Material.Filled.ChevronLeft" Color="Color.Tertiary" Ripple="false" @onclick="@(() => NavigateToHome())">Tillbaka</MudButton>
         <MudGrid Justify="Justify.Center">
             <MudItem xs="12">
                 <MudPaper Class="pa-5 rounded" Elevation="5">
@@ -29,7 +31,7 @@ else
                                     <MudText Typo="Typo.subtitle2" Align="Align.Left" Class="my-5">@(note)</MudText>
                                 }
                             </MudItem>
-                        } 
+                        }
                         else
                         {
                             <MudItem xs="12" md="12">
@@ -111,5 +113,11 @@ else
         var deserializer = new DeserializerBuilder().Build();
 
         _recipe = deserializer.Deserialize<Nonna.Web.Models.Recipe>(recipeYaml);
+    }
+
+    private void NavigateToHome()
+    {
+        // NavigationManager.NavigateTo("/"); // For local dev use
+        NavigationManager.NavigateTo("/Nonna");
     }
 }
