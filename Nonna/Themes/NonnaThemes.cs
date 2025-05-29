@@ -6,29 +6,38 @@ namespace Nonna.Web.Themes
     {
         public static MudTheme PrimaryTheme = new MudTheme()
         {
-            PaletteDark = new PaletteDark()
+            PaletteLight = new PaletteLight()
             {
-                Primary = "#ffffff",  // Straight white for clarity
-                Secondary = "#81a079",  // Olive-toned green for warmth
+                Background = "#fcf8f3",
+                TextPrimary = "#1F1F21",
+                TextSecondary = "#839c7d",
+                Primary = "#839c7d",
+                Secondary = "#7c6382",
                 Tertiary = "#3e101b",  // Deep red for elegance
-                Background = "#e0d3c3",  // Creamy beige for an inviting feel
-                Surface = "#f5e7d3",  // Softer beige for subtle contrast
-                TextPrimary = "#3e101b",  // Rich red for primary text
-                TextSecondary = "#81a079",  // Green for secondary elements
+                Surface = "#FFFFFF",  // Softer beige for subtle contrast
                 Info = "#81a079",
                 Success = "#5cb85c",  // Keeping green for success indicators
                 Warning = "#f0ad4e",  // Warm amber for warnings
                 Error = "#d9534f",  // Strong red for errors
             },
-            Typography = new Typography()
+            Typography = new Typography
             {
-                Default = new DefaultTypography()
+                H1 = new H1Typography()
                 {
-                    FontFamily = new[] { "Poppins", "Helvetica", "Arial", "sans-serif" }
+                    FontFamily = ["Italiana"],
                 },
-                H3 = new H3Typography
+                H4 = new H4Typography()
                 {
-
+                    FontFamily = ["Meow Script"],
+                },
+                H5 = new H5Typography()
+                {
+                    FontFamily = ["Quicksand"],
+                    FontSize = "2.5rem"
+                },
+                H6 = new H6Typography()
+                {
+                    FontFamily = ["Quicksand"]
                 }
             }
         };

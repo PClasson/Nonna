@@ -6,11 +6,11 @@
 <PageTitle>Nonna</PageTitle>
 
 <MudContainer>
-    <MudText Typo="Typo.h3" Align="Align.Center" GutterBottom="true">Nonna</MudText>
-    <MudText Align="Align.Center">Recept från farmor</MudText>
+    <MudText Typo="Typo.h1" Align="Align.Center" Color="Color.Tertiary">Nonna</MudText>
+    <MudText Typo="Typo.h4" Align="Align.Center">Recept från farmor</MudText>
 
     <MudContainer MaxWidth="MaxWidth.Small">
-        <MudTextField ValueChanged="@FilterRecipeList" Immediate="true" Variant="Variant.Text" T="string" Label="Filtrera"></MudTextField>
+        <MudTextField ValueChanged="@FilterRecipeList" Immediate="true" Variant="Variant.Text" T="string" Adornment="Adornment.Start" AdornmentIcon="@Icons.Material.Filled.Search" AdornmentColor="Color.Tertiary"></MudTextField>
     </MudContainer>
 </MudContainer>
 
@@ -23,32 +23,32 @@
 else if (filteredList.Any())
 {
     <MudContainer>
-            <MudGrid Class="mt-4 mb-1 pt-0" Justify="Justify.Center" Spacing="5">
-                @foreach (var index in filteredList)
-                {
-                    <MudItem>
-                        <MudCard @onclick="@(() => NavigateToRecipe(index.Path))" Elevation="25" Class="rounded-lg">
-                            <MudCardMedia Image="@($"recipes/{index.Path}/{index.Image}")" />
-                            <MudCardContent Style="width: 250px; height:125px;" Class="d-flex flex-column justify-space-around pa-3">
-                                <MudText>@index.Title</MudText>
-                                <MudText>@index.Description</MudText>
-                            </MudCardContent>
-                            <MudCardActions>
-                                @foreach (var tag in index.Tags.Take(5))
-                                {
-                                    <MudChip T="string" Size="Size.Small">@tag</MudChip>
-                                }
-                            </MudCardActions>
-                        </MudCard>
-                    </MudItem>
-                }
-            </MudGrid>
+        <MudGrid Class="mt-4 mb-1 pt-0" Justify="Justify.Center" Spacing="5">
+            @foreach (var index in filteredList)
+            {
+                <MudItem>
+                    <MudCard @onclick="@(() => NavigateToRecipe(index.Path))" Elevation="5" Class="rounded-lg">
+                        <MudCardMedia Image="@($"recipes/{index.Path}/{index.Image}")" />
+                        <MudCardContent Style="width: 250px; height:100px;" Class="d-flex flex-column justify-space-around pa-3">
+                            <MudText Typo="Typo.h6">@index.Title</MudText>
+                            <MudText Typo="Typo.body2">@index.Description</MudText>
+                        </MudCardContent>
+                        <MudCardActions>
+                            @foreach (var tag in index.Tags.Take(5))
+                            {
+                                <MudChip T="string" Size="Size.Small" Color="Color.Primary">@tag</MudChip>
+                            }
+                        </MudCardActions>
+                    </MudCard>
+                </MudItem>
+            }
+        </MudGrid>
     </MudContainer>
 }
 else
 {
     <MudContainer>
-        <MudText Typo="Typo.h3" Align="Align.Center" GutterBottom="true">Inga recept...</MudText>
+        <MudText Typo="Typo.h5" Align="Align.Center" Class="my-5">Inga recept matchar filtreringen...</MudText>
     </MudContainer>
 }
 

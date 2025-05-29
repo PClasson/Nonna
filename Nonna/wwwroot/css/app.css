@@ -1,5 +1,8 @@
 html, body {
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-family: "Italiana", sans-serif;
+    font-family: "Meow Script", cursive;
+    font-family: "Quicksand", sans-serif;
 }
 
 #blazor-error-ui {
