@@ -23,6 +23,17 @@
         "Friterat",
         "VendelaWho"
       ]
+    },
+    {
+      "title": "Tartare Balzac",
+      "description": "Råbiff från Balzac",
+      "image": "47670f8a-e0c4-46b0-83ca-9384693a0e5e.jpg",
+      "path": "tartare-balzac",
+      "tags": [
+        "Franskt",
+        "Bistro",
+        "Råbiff"
+      ]
     }
   ]
 }
