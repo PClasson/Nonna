@@ -27,9 +27,9 @@ else if (filteredList.Any())
             @foreach (var index in filteredList)
             {
                 <MudItem>
-                    <MudCard @onclick="@(() => NavigateToRecipe(index.Path))" Elevation="5" Class="rounded-lg">
+                    <MudCard Style="width:300px" @onclick="@(() => NavigateToRecipe(index.Path))" Elevation="5" Class="rounded-lg">
                         <MudCardMedia Image="@($"recipes/{index.Path}/{index.Image}")" />
-                        <MudCardContent Style="width: 250px; height:100px;" Class="d-flex flex-column justify-space-around pa-3">
+                        <MudCardContent Class="d-flex flex-column justify-space-around pa-3">
                             <MudText Typo="Typo.h6">@index.Title</MudText>
                             <MudText Typo="Typo.body2">@index.Description</MudText>
                         </MudCardContent>
